@@ -92,6 +92,7 @@
 //! # run().unwrap();
 //! ```
 pub mod file;
+pub mod lazy;
 pub mod loader;
 pub mod mem;
 pub mod meta;
