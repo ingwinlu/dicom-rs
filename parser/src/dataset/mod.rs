@@ -200,14 +200,14 @@ impl<D> LazyDataToken<D>
 where
     D: decode::StatefulDecode,
 {
-    pub fn skip(self) -> Result<()> {
+    pub fn skip(self) -> crate::stateful::decode::Result<()> {
         match self {
             LazyDataToken::LazyValue {
                 header,
                 mut decoder,
-            } => decoder.skip_bytes(header.len.0).context(SkipValue),
+            } => decoder.skip_bytes(header.len.0),
             LazyDataToken::LazyItemValue { len, mut decoder } => {
-                decoder.skip_bytes(len).context(SkipValue)
+                decoder.skip_bytes(len)
             }
             _ => Ok(()), // do nothing
         }
