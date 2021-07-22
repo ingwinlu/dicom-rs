@@ -33,6 +33,7 @@ remaining intrinsically fast and safe to use.
 - [`scpproxy`](scpproxy) implements the Proxy service class provider.
 - [`echoscu`](echoscu) implements a Verification service class user.
 - [`storescu`](storescu) implements a Storage service class user.
+- [`findscu`](findscu) implements a Find service class user.
 
 ## Using as a library
 
