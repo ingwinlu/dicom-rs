@@ -239,7 +239,7 @@ where
     /// **Note:** For the data set to be successfully parsed,
     /// the resulting data tokens needs to be consumed
     /// if they are of a value type.
-    pub fn next(&mut self) -> Option<Result<LazyDataToken<&mut S>>> {
+    pub fn advance(&mut self) -> Option<Result<LazyDataToken<&mut S>>> {
         if self.hard_break {
             return None;
         }
@@ -498,7 +498,7 @@ mod tests {
         let mut dset_reader = LazyDataSetReader::new(parser);
 
         let mut gt_iter = ground_truth.into_iter();
-        while let Some(res) = dset_reader.next() {
+        while let Some(res) = dset_reader.advance() {
             let gt_token = gt_iter.next().expect("ground truth is shorter");
             let token = res.expect("should parse without an error");
             let token = token.into_owned().unwrap();
@@ -1052,7 +1052,7 @@ mod tests {
         let mut dset_reader = LazyDataSetReader::new(parser);
 
         let mut gt_iter = ground_truth.into_iter();
-        while let Some(res) = dset_reader.next() {
+        while let Some(res) = dset_reader.advance() {
             let token = res.expect("should parse without an error");
             let gt_token = gt_iter.next().expect("ground truth is shorter");
             match token {
@@ -1105,7 +1105,7 @@ mod tests {
         let mut dset_reader = LazyDataSetReader::new(parser);
 
         let token = dset_reader
-            .next()
+            .advance()
             .expect("Expected token 1")
             .expect("Failed to read token 1");
 
@@ -1117,7 +1117,7 @@ mod tests {
         };
 
         let token = dset_reader
-            .next()
+            .advance()
             .expect("Expected token 2")
             .expect("Failed to read token 2");
 
@@ -1137,7 +1137,7 @@ mod tests {
         );
 
         let token = dset_reader
-            .next()
+            .advance()
             .expect("Expected token 3")
             .expect("Failed to read token 3");
 
@@ -1149,7 +1149,7 @@ mod tests {
         };
 
         let token = dset_reader
-            .next()
+            .advance()
             .expect("Expected token 4")
             .expect("Failed to read token 4");
 
@@ -1169,7 +1169,7 @@ mod tests {
         );
 
         assert!(
-            dset_reader.next().is_none(),
+            dset_reader.advance().is_none(),
             "unexpected number of tokens remaining"
         );
     }
