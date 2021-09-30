@@ -99,7 +99,7 @@ struct SeqToken {
 /// This iterator produces data tokens without eagerly reading the bytes
 /// of a value.
 #[derive(Debug)]
-pub struct LazyDataSetReader<S, D> {
+pub struct LazyDataSetReader<S, D = StandardDataDictionary> {
     /// the stateful decoder
     parser: S,
     /// the data attribute dictionary
