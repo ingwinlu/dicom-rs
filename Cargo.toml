@@ -14,5 +14,6 @@ members = [
     "scpproxy",
     "echoscu",
     "storescu",
-    "pixeldata"
+    "pixeldata",
+    "fromimage"
 ]
